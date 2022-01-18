@@ -1,6 +1,0 @@
-
-
-
-class ListUserSendComplimentsService {
-  asyn
-}

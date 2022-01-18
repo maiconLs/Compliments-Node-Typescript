@@ -1,6 +1,0 @@
-
-
-
-class AuthenticateUserService{
-  async execute()
-}

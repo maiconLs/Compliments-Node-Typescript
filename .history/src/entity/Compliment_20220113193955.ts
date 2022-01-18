@@ -1,4 +1,0 @@
-import {
-  PrimaryCollumn,
-  Coll
-}
