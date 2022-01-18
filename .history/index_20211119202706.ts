@@ -1,0 +1,2 @@
+// instalações: 
+// yarn init -y
