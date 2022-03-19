@@ -1,0 +1,125 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de envio de comentários e elogios",
+    "description": "Compliments é uma plataforma para promover o reconhecimento entre companheiros de equipe.",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "maiconlsilva10@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "API de test"
+    }
+  ],
+  "paths": {
+    "/tags": {
+      "post": {
+        "summary": "Criando tag",
+        "description": "Essa rota será responsável por cadastrar uma nova tag",
+        "tags": ["Compliments"],
+        "parameters": [
+            {
+                "name": "user_id",
+                "in":"query",
+                "description": "ID do usuário administrador.",
+                "required": true
+            }
+        ],
+        "security": [{"bearerAuth": []}],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              },
+              "examples": {
+                "tag": {
+                  "value": {
+                    "name": "Liderança"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Tag already exists!"
+          },
+          "200": {
+            "description": "OK.",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Tag"
+                },
+                "examples": {
+                    "tag": {
+                      "value": {
+                        "name": "Liderança"
+                      }
+                    }
+                  }
+              }
+            }
+          }
+        }
+      },
+      "get":{
+        "description": "Lista de todas as tags",
+        "summary": "Lista de todas as tags",
+        "tags":["Compliments"],
+        "security": [{"bearerAuth": []}],
+        "responses": {
+            "200": {
+              "description": "OK.",
+              "content": {
+                "aplication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Tag"
+                  },
+                  "examples": {
+                    "tag": {
+                      "value": {
+                        "name": "Liderança"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+    }
+    }
+
+  },
+
+  "components": {
+    "schemas": {
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "name": {
+              "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+        "bearerAuth":{
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+        }
+    }
+  }
+}

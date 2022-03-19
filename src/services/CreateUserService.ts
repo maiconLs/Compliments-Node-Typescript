@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from 'bcryptjs';
+import { User } from "../entity/User";
 
 interface IUserRequest {
   name: string;
@@ -10,6 +11,9 @@ interface IUserRequest {
 }
 
 class CreateUserService {
+  static execute(userData: User) {
+    throw new Error("Method not implemented.");
+  }
   async execute({ name, email, admin = false, password }: IUserRequest) {
     const usersRepository = getCustomRepository(UsersRepositories);
 
